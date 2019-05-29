@@ -1,0 +1,5 @@
+---
+supervisor_version: latest
+supervisor_started: true
+supervisor_enabled: true
+supervisor_config_path: /etc/supervisor

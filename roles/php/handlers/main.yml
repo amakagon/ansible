@@ -1,0 +1,6 @@
+---
+
+- name: start {{ php_version }}-fpm
+  service: name={{ php_version }}-fpm enabled=yes state=started
+
+- include: ../nginx/handlers/main.yml

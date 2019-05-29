@@ -1,0 +1,5 @@
+[supervisord]
+nodeamon=false
+
+[program:test]
+command=php /var/www/{{name_server}}/artisan start

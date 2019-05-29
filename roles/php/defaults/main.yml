@@ -1,0 +1,4 @@
+---
+php_version: php7.2
+#ansible_distribution_release: stretch
+

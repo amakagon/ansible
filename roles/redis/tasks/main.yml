@@ -1,0 +1,5 @@
+---
+- name: Ensure Redis is present
+  apt:
+    pkg: redis-server
+    state: latest

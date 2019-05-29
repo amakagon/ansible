@@ -1,0 +1,11 @@
+---
+- name: installs common utilities
+  apt:
+    pkg:
+      - sudo
+      - nano
+      - curl
+      - htop
+      - nmap
+      - bash-completion
+    state: latest

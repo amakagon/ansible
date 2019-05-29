@@ -1,0 +1,41 @@
+---
+- name: Ensure Supervisor is installed (latest version).
+  pip:
+    name: supervisor
+    state: present
+  when: supervisor_version == 'latest'
+
+- name: Install Supervisor
+  apt:
+    name: supervisor
+    state: present
+
+- name: Ensure Supervisor config paths are present.
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+    owner: root
+    group: root
+  with_items:
+    - "{{ supervisor_config_path }}"
+    - "{{ supervisor_config_path }}/conf.d"
+
+- name: Ensure Supervisor configuration is present.
+  template:
+    src: supervisord.conf.j2
+    dest: "{{ supervisor_config_path }}/supervisord.conf"
+    mode: 0644
+  notify: restart supervisor
+
+- name: Ensure Supervisor is started (if configured).
+  service:
+    name: supervisor
+    state: started
+  when: supervisor_started
+
+- name: Ensure Supervisor is enabled at boot (if configured).
+  service:
+    name: supervisor
+    enabled: true
+  when: supervisor_enabled
